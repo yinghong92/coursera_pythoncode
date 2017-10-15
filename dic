@@ -1,0 +1,46 @@
+name = raw_input("Enter file:")
+if len(name) < 1: name = "words.txt"
+handle = open(name)
+A = dict()
+mylist=list()
+listnew = list()
+
+for line in handle:
+    line=line.rstrip()
+    if line.startswith('From:'): continue
+    if not line.startswith('From'): continue
+    words=line.split()
+    mylist.append(words[5])
+    newlist=words[5].split(':')
+    #print newlist[0]
+    listnew.append(newlist[0])
+
+for wrd in listnew:
+    # if wrd in A:
+    #     A[wrd]=A[wrd]+1
+    # else:
+    #     A[wrd]=1
+    A[wrd]=A.get(wrd,0)+1
+#
+# max= None
+# maxke=None
+# for key,val in A.items():
+#     if max==None: max=val
+#     if max<val:
+#         max=val
+#         maxke=key
+#
+# print maxke, max
+
+#-----sort by keys
+tmp=list()
+for k,v in A.items():
+    tmp.append( (k,v) )
+tmp.sort()
+for k,v in tmp:
+    print k,v
+
+
+x = { 'chuck' : 1 , 'fred' : 42, 'jan': 100}
+y = x.items()
+print type(y)
